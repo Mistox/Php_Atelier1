@@ -5,6 +5,7 @@ require_once __DIR__ . "/lib/pdo.php";
 require_once __DIR__ . "/lib/article.php";
 require_once __DIR__ . "/templates/header.php";
 
+
 $articles = getArticles($pdo,3,1); // 3 articles par page, page 1
 
 ?>

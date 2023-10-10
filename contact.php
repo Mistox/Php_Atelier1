@@ -12,6 +12,9 @@ require_once __DIR__."/templates/header.php";
     if (isset($_POST["sendContact"])) {
         $email = $_POST["email"];
         $message = $_POST["message"];
+        $headers = "Contest-Type: text/plain; charset=UTF-8\r\n";
+        $headers .= "From: www.pololeboss@gmail.com\r\n";
+        
 
         if (empty($email)) {
             $errors[] = "L'email est obligatoire";
@@ -22,8 +25,7 @@ require_once __DIR__."/templates/header.php";
         }
 
         if (empty($errors)) {
-            $res = mail($email,"Message de contact", $message);
-            var_dump($res);
+            $res = mail($email,"Email de test", $message, $headers);
             $messages[] = "Votre message a bien été envoyé";
         }
     }

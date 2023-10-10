@@ -39,7 +39,9 @@ function getArticles(PDO $pdo, int $limit = null, int $page = null, int $id_cate
         $query->bindValue(":offset", $offset, PDO::PARAM_INT);
     }
 
-    $query->bindValue(":id_category", $id_category, PDO::PARAM_INT);
+    if($id_category !== null) {
+        $query->bindValue(":id_category", $id_category, PDO::PARAM_INT);
+    }
     $query->execute();
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -54,7 +56,9 @@ function getTotalArticles(PDO $pdo, int $id_category = null):int|bool
         "SELECT COUNT(id) as total FROM articles" :
         "SELECT COUNT(id) as total FROM articles WHERE category_id = :id_category";
     $query = $pdo->prepare($sql);
-    $query->bindValue(":id_category", $id_category, PDO::PARAM_INT);
+    if($id_category !== null) {
+        $query->bindValue(":id_category", $id_category, PDO::PARAM_INT);
+    }
     $query->execute();
 
     return $query->fetch(PDO::FETCH_ASSOC)['total'];

@@ -15,7 +15,7 @@ if (isset($_POST['loginUser'])) {
 
     if ($user) {
         $_SESSION['user'] = $user;
-        header( ($user['role'] == 'admin') ? 'Location: /admin/index.php' : 'Location: index.php');
+        header( ($user['role'] == 'admin') ? 'Location: ./admin/index.php' : 'Location: ./index.php');
     } else {
         $errors[] = "Email ou mot de passe incorrect";
     }
